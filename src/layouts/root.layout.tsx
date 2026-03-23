@@ -4,8 +4,7 @@ import { Toaster } from "@/components/ui/sonner"
 const RootLayout = () => {
   return (
     <div>
-      <Outlet/>
-      
+      <Outlet/>      
       <Toaster
         position="top-right"
         richColors
