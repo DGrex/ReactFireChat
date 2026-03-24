@@ -1,5 +1,6 @@
 
 
+
 import {z} from "zod";
 
 //Schema Login
@@ -43,3 +44,17 @@ export const profileZodSchema = z.object({
 });
 
 export type ProfileZodSchemaType = z.infer<typeof profileZodSchema>
+
+// Schema Tasks
+export const taskZodSchema = z.object({
+    title:z
+    .string()
+    .min(1,"Title is required")
+    .max(100,"Title must be at most 100 characters long"),
+    description:z
+    .string()
+    .max(500,"Descriptions must be at most 500 characters long")
+    .optional()
+})
+
+export type TaskZodSchemaType = z.infer<typeof taskZodSchema>

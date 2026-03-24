@@ -11,6 +11,7 @@ import ChatPage from "./pages/admin/chat.page"
 import LoginPage from "./pages/auth/login.page"
 import RegisterPage from "./pages/auth/register.page"
 import AuthLayout from "./layouts/auth.layout"
+import TaskPage from "./pages/admin/task.page"
 
 const App = () => {
 
@@ -27,6 +28,7 @@ const App = () => {
           <Route index element= {<DashboardPage/>}/>
           <Route path="profile" element= {<ProfilePage/>}/>
           <Route path="chat" element= {<ChatPage/>}/>
+          <Route path="task" element= {<TaskPage/>}/>
         </Route>
 
         <Route path="auth" element= {<AuthLayout/>}>          
