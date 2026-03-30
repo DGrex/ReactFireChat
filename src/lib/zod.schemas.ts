@@ -1,6 +1,7 @@
 
 
 
+
 import {z} from "zod";
 
 //Schema Login
@@ -58,3 +59,9 @@ export const taskZodSchema = z.object({
 })
 
 export type TaskZodSchemaType = z.infer<typeof taskZodSchema>
+
+export const messageZodSchema= z.object({
+    text: z.string().trim().min(1,"Escriba algo por favor")
+})
+
+export type MessageZodSchemaType = z.infer<typeof messageZodSchema>;
