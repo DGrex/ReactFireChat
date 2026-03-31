@@ -41,13 +41,13 @@ const AuthenticatedLayout = () =>{
     suspense: true,
   })
 
-  return(
-    <div>
-      <Navbar/>
-      <div className="container mx-auto p-4">
-        <Outlet/>
-      </div>      
+  return (
+    <div className="h-screen min-h-screen overflow-hidden flex flex-col">
+      <Navbar />
+      <div className="flex-1 overflow-hidden">
+        <Outlet />
+      </div>
     </div>
-  )
+  );
 
 }

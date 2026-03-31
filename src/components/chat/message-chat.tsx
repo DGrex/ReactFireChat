@@ -11,22 +11,24 @@ const MessageChat = ({ message }: Props) => {
   const { data: user } = useUser();
   const isFriend = user?.uid !== message.senderId;
   return (
-    <div
-      className={cn(
-        "max-w-37.5 bg-pink-200 p-2",
-        isFriend ? "bg-pink-200" : "bg-green-200 ml-auto",
-      )}
-    >
-      <p>{message.text}</p>
-      <p className="truncate text-xs">
-        {isFriend ? (
-          <Suspense fallback={<div>Cargando user info... </div>}>
-            <FriendEmail senderId={message.senderId} />
-          </Suspense>
-        ) : (
-          user.email
+    <div className={cn("flex gap-2 animate-in fade-in-50 duration-300", isFriend ? "justify-start" : "justify-end")}>
+      <div
+        className={cn(
+          "max-w-xs lg:max-w-md px-4 py-2 rounded-lg wrap-break-word text-sm shadow-sm",
+          isFriend
+            ? "bg-muted text-foreground rounded-bl-none"
+            : "bg-primary text-primary-foreground rounded-br-none",
         )}
-      </p>
+      >
+        <p className="whitespace-pre-wrap">{message.text}</p>
+        {isFriend && (
+          <p className="truncate text-xs opacity-70 mt-1">
+            <Suspense fallback={<span>Cargando...</span>}>
+              <FriendEmail senderId={message.senderId} />
+            </Suspense>
+          </p>
+        )}
+      </div>
     </div>
   );
 };

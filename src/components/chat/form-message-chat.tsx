@@ -39,7 +39,7 @@ const FormMessageChat = ({ roomId }: Props) => {
     <form
       id="form-rhf-demo"
       onSubmit={form.handleSubmit(onSubmit)}
-      className="space-y-2"
+      className="border-t border-border bg-background p-4 space-y-2"
     >
       <FieldGroup>
         <Controller
@@ -47,13 +47,26 @@ const FormMessageChat = ({ roomId }: Props) => {
           control={form.control}
           render={({ field, fieldState }) => (
             <Field data-invalid={fieldState.invalid}>
-              <Input {...field} placeholder="New Message" />
+              <div className="flex gap-2">
+                <Input
+                  {...field}
+                  placeholder="Escribe un mensaje..."
+                  className="flex-1"
+                  disabled={isLoading}
+                />
+                <Button
+                  type="submit"
+                  disabled={isLoading || !field.value.trim()}
+                  className="px-6"
+                >
+                  {isLoading ? "Enviando..." : "Enviar"}
+                </Button>
+              </div>
               {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
             </Field>
           )}
         />
       </FieldGroup>
-      <Button>{isLoading ? "Enviando Mensajes" : "Enviar"}</Button>
     </form>
   );
 };

@@ -45,7 +45,7 @@ const FormSearchFriend = ({ handleClickRoomId }: Props) => {
     <form
       id="form-rhf-demo"
       onSubmit={form.handleSubmit(onSubmit)}
-      className="space-y-2"
+      className="p-3 border-b border-border space-y-2"
     >
       <FieldGroup>
         <Controller
@@ -53,20 +53,27 @@ const FormSearchFriend = ({ handleClickRoomId }: Props) => {
           control={form.control}
           render={({ field, fieldState }) => (
             <Field data-invalid={fieldState.invalid}>
-              <Input {...field} placeholder="search@mail.com" />
+              <div className="flex gap-2">
+                <Input
+                  {...field}
+                  placeholder="Buscar por email..."
+                  disabled={isLoading}
+                  className="flex-1"
+                />
+                <Button
+                  type="submit"
+                  disabled={isLoading || !field.value.trim()}
+                  className="px-4"
+                  size="sm"
+                >
+                  {isLoading ? "..." : "Buscar"}
+                </Button>
+              </div>
               {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
             </Field>
           )}
         />
       </FieldGroup>
-      <Button
-        type="submit"
-        variant={"outline"}
-        className="w-full"
-        disabled={isLoading}
-      >
-        {isLoading ? "Buscando Friend" : "Buscar"}
-      </Button>
     </form>
   );
 };
