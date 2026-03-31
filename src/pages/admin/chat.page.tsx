@@ -3,6 +3,7 @@ import FormSearchFriend from "@/components/chat/form-search-friend";
 import ListRoomChat from "@/components/chat/list-room-chat";
 import MessagesChat from "@/components/chat/messages-chat";
 import { Suspense, useState } from "react";
+import { MessageSquare } from "lucide-react";
 
 const ChatPage = () => {
   const [roonId, setRoonId] = useState("");
@@ -10,11 +11,14 @@ const ChatPage = () => {
     setRoonId(id);
   };
   return (
-    <div className="flex h-full min-h-0 bg-background overflow-hidden">
+    <div className="max-w-7xl mx-auto p-4 flex flex-col md:flex-row h-full min-h-0 bg-background overflow-hidden">
       {/* Sidebar de chats */}
       <section className="w-full md:w-80 border-r border-border bg-muted/30 flex flex-col overflow-hidden">
         <div className="p-4 border-b border-border">
-          <h1 className="text-xl font-semibold text-foreground">Mensajes</h1>
+          <h1 className="text-xl font-semibold text-foreground flex items-center gap-2">
+            <MessageSquare className="w-5 h-5" />
+            Mensajes
+          </h1>
         </div>
         <div className="flex-1 overflow-y-auto space-y-1 p-2">
           <Suspense
@@ -34,7 +38,7 @@ const ChatPage = () => {
       </section>
 
       {/* Area de chat */}
-      <section className="hidden md:flex flex-1 flex-col min-h-0 bg-background overflow-hidden">
+      <section className="flex flex-1 flex-col min-h-0 bg-background overflow-hidden">
         {roonId ? (
           <div className="flex-1 min-h-0 flex flex-col overflow-hidden">
             <Suspense
@@ -49,8 +53,12 @@ const ChatPage = () => {
             <FormMessageChat roomId={roonId} />
           </div>
         ) : (
-          <div className="flex-1 flex items-center justify-center text-muted-foreground">
-            Selecciona un chat para comenzar
+          <div className="flex-1 flex flex-col items-center justify-center text-muted-foreground space-y-4">
+            <MessageSquare className="w-16 h-16 opacity-50" />
+            <div className="text-center">
+              <h2 className="text-xl font-semibold mb-2">Selecciona un chat</h2>
+              <p>Elige una conversación del sidebar para comenzar a chatear</p>
+            </div>
           </div>
         )}
       </section>

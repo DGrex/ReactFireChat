@@ -44,7 +44,7 @@ const AuthenticatedLayout = () =>{
   return (
     <div className="h-screen min-h-screen overflow-hidden flex flex-col">
       <Navbar />
-      <div className="flex-1 overflow-hidden">
+      <div className="flex-1 overflow-auto">
         <Outlet />
       </div>
     </div>
